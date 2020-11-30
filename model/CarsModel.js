@@ -12,8 +12,11 @@ class CarsModel {
         return this.fetchAllCars().find((obj) => obj.brand === brand);
     }
 
-    addModel(brand, model) {
-        // TODO: implement
+    addModel(brand, model) {            //zadanie 1
+        let cars = this.fetchAllCars();
+        let tenModel = cars.find((model) => model.brand == brand);
+        tenModel.models.push(model);
+        fs.writeFileSync(__dirname + '/card.json', JSON.stringify(cars));
     }
 
     deleteModel(brand, model){
