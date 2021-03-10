@@ -13,10 +13,10 @@ class CarsModel {
             this.data = JSON.parse(conf.data);
     }
 
-    fetchJson(path){
+    fetchJson() {
         if (this.data)
             return this.data;
-        return JSON.parse(fs.readFileSync(path).toString())
+        return JSON.parse(fs.readFileSync(this.carsFile).toString())
     }
 
     fetchAllCars(){
@@ -28,6 +28,14 @@ class CarsModel {
     }
 
     addModel(brand, model) {
+        // TODO: implement
+    }
+
+    /**
+     * @param {string} brand 
+     * @param {string[]} models 
+     */
+    updateModel(brand, models) {
         // TODO: implement
     }
 

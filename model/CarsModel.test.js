@@ -37,7 +37,7 @@ describe('Cars Controller test', () => {
         expect(model.fetchJson()).toStrictEqual(mockData);
     })
     
-    it('should return array of objects', () => {
+    it('should return Arrays of cars', () => {
         expect(model.fetchAllCars()).toBeInstanceOf(Array);
     });
 
@@ -49,8 +49,17 @@ describe('Cars Controller test', () => {
         expect(model.fetchSingleBrand("dawd")).toBe(undefined);
     });
 
+    it('should update/override all models', () => {
+        const newModels = ["1", "2", "3", "4", "5"];
+        const getBrand = () => model.fetchAllCars()[0];
+
+        model.updateModel(getBrand().brand, newModels);
+
+        expect(getBrand().brand.models.length).toBe(newModels.length);
+    })
+
     it('should add model', () => {
-        const getModelCount = () => model.fetchAllCars()[0].models.length
+        const getModelCount = () => model.fetchAllCars()[0].models.length;
         const count = getModelCount();
 
         model.addModel("Brand1", "NewModel");
