@@ -1,11 +1,26 @@
 const fs = require('fs');
+
 class CarsModel {
-    fetchJson(path){
-        return JSON.parse(fs.readFileSync(path).toString())
+    carsFile = __dirname + '/cars.json';
+
+    constructor(conf) {
+        if (conf.carsFile)
+            this.carsFile = conf.carsFile;
+    
+
+        // used to testing
+        if (conf.data)
+            this.data = JSON.parse(conf.data);
+    }
+
+    fetchJson() {
+        if (this.data)
+            return this.data;
+        return JSON.parse(fs.readFileSync(this.carsFile).toString())
     }
 
     fetchAllCars(){
-        return this.fetchJson(__dirname + '/cars.json');
+        return this.fetchJson();
     }
 
     fetchSingleBrand(brand){
@@ -13,6 +28,14 @@ class CarsModel {
     }
 
     addModel(brand, model) {
+        // TODO: implement
+    }
+
+    /**
+     * @param {string} brand 
+     * @param {string[]} models 
+     */
+    updateModel(brand, models) {
         // TODO: implement
     }
 
