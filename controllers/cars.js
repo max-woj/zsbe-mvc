@@ -2,9 +2,12 @@ const express = require('express');
 const router = express.Router();
 const CarsModel = require('../model/CarsModel');
 
-router.post('/cars/:brand/:model', (req, res) => {
-    console.log(req.params)
-    // TODO: implement
+router.post('/cars/:brand/:model', (req, res) => {     //zadanie 2
+    const carsModel = new CarsModel();
+    carsModel.addModel(req.params.brand, req.params.model);
+
+    console.log(req.params.brand);
+   
 });
 
 router.delete('/cars/:brand/:model', (req, res) => {
